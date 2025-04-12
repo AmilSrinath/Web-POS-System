@@ -1,137 +1,134 @@
-import type React from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { BarChart, DollarSign, Package, ShoppingCart, Users } from "lucide-react"
+import { CircleDollarSign, Package, ShoppingCart, TrendingUp, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function DashboardPage() {
-		return (
-				<div className="flex-1 space-y-4 p-4 pt-6 md:p-8">
-						<div className="flex items-center justify-between">
-								<h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-						</div>
-						<Tabs defaultValue="overview" className="space-y-4">
-								<TabsList>
-										<TabsTrigger value="overview">Overview</TabsTrigger>
-										<TabsTrigger value="analytics">Analytics</TabsTrigger>
-								</TabsList>
-								<TabsContent value="overview" className="space-y-4">
-										<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-												<Card>
-														<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-																<CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-																<DollarSign className="h-4 w-4 text-muted-foreground" />
-														</CardHeader>
-														<CardContent>
-																<div className="text-2xl font-bold">$45,231.89</div>
-																<p className="text-xs text-muted-foreground">+20.1% from last month</p>
-														</CardContent>
-												</Card>
-												<Card>
-														<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-																<CardTitle className="text-sm font-medium">Sales</CardTitle>
-																<ShoppingCart className="h-4 w-4 text-muted-foreground" />
-														</CardHeader>
-														<CardContent>
-																<div className="text-2xl font-bold">+573</div>
-																<p className="text-xs text-muted-foreground">+12.4% from last month</p>
-														</CardContent>
-												</Card>
-												<Card>
-														<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-																<CardTitle className="text-sm font-medium">Products</CardTitle>
-																<Package className="h-4 w-4 text-muted-foreground" />
-														</CardHeader>
-														<CardContent>
-																<div className="text-2xl font-bold">128</div>
-																<p className="text-xs text-muted-foreground">+4 new products added</p>
-														</CardContent>
-												</Card>
-												<Card>
-														<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-																<CardTitle className="text-sm font-medium">Customers</CardTitle>
-																<Users className="h-4 w-4 text-muted-foreground" />
-														</CardHeader>
-														<CardContent>
-																<div className="text-2xl font-bold">+2350</div>
-																<p className="text-xs text-muted-foreground">+10.1% from last month</p>
-														</CardContent>
-												</Card>
-										</div>
-										<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-												<Card className="col-span-4">
-														<CardHeader>
-																<CardTitle>Sales Overview</CardTitle>
-																<CardDescription>View your sales performance over time</CardDescription>
-														</CardHeader>
-														<CardContent className="pl-2">
-																<div className="h-[200px] w-full flex items-center justify-center">
-																		<BarChart className="h-16 w-16 text-muted-foreground" />
-																		<span className="ml-2 text-muted-foreground">Sales chart will appear here</span>
-																</div>
-														</CardContent>
-												</Card>
-												<Card className="col-span-3">
-														<CardHeader>
-																<CardTitle>Recent Sales</CardTitle>
-																<CardDescription>You made 265 sales this month</CardDescription>
-														</CardHeader>
-														<CardContent>
-																<div className="space-y-8">
-																		{[1, 2, 3].map((i) => (
-																				<div key={i} className="flex items-center">
-																						<Avatar className="h-9 w-9">
-																								<AvatarFallback>{`C${i}`}</AvatarFallback>
-																						</Avatar>
-																						<div className="ml-4 space-y-1">
-																								<p className="text-sm font-medium leading-none">Customer {i}</p>
-																								<p className="text-sm text-muted-foreground">customer{i}@example.com</p>
-																						</div>
-																						<div className="ml-auto font-medium">${(Math.random() * 100).toFixed(2)}</div>
-																				</div>
-																		))}
-																</div>
-														</CardContent>
-												</Card>
-										</div>
-								</TabsContent>
-								<TabsContent value="analytics" className="space-y-4">
-										<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
-												<Card className="col-span-1">
-														<CardHeader>
-																<CardTitle>Sales by Category</CardTitle>
-																<CardDescription>Top performing product categories</CardDescription>
-														</CardHeader>
-														<CardContent className="pl-2">
-																<div className="h-[300px] w-full flex items-center justify-center">
-																		<BarChart className="h-16 w-16 text-muted-foreground" />
-																		<span className="ml-2 text-muted-foreground">Category chart will appear here</span>
-																</div>
-														</CardContent>
-												</Card>
-												<Card className="col-span-1">
-														<CardHeader>
-																<CardTitle>Customer Demographics</CardTitle>
-																<CardDescription>Breakdown of customer segments</CardDescription>
-														</CardHeader>
-														<CardContent className="pl-2">
-																<div className="h-[300px] w-full flex items-center justify-center">
-																		<BarChart className="h-16 w-16 text-muted-foreground" />
-																		<span className="ml-2 text-muted-foreground">Demographics chart will appear here</span>
-																</div>
-														</CardContent>
-												</Card>
-										</div>
-								</TabsContent>
-						</Tabs>
-				</div>
-		)
+  return (
+    <div className="flex flex-col gap-6 p-6 md:p-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Dashboard</h1>
+          <p className="text-muted-foreground">Welcome back to your store overview.</p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" className="border-border/20 hover:bg-muted">
+            Download Report
+          </Button>
+          <Button className="bg-primary hover:bg-primary/90">
+            <ShoppingCart className="mr-2 h-4 w-4" />
+            New Sale
+          </Button>
+        </div>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <StatsCard
+          title="Total Sales"
+          value="$12,345"
+          change="+20.1%"
+          trend="up"
+          description="from last month"
+          icon={CircleDollarSign}
+        />
+        <StatsCard title="Products" value="245" change="+12" trend="up" description="added this month" icon={Package} />
+        <StatsCard title="Customers" value="573" change="+18" trend="up" description="new this month" icon={Users} />
+        <StatsCard
+          title="Pending Credit"
+          value="$2,350"
+          change="15"
+          trend="neutral"
+          description="customers"
+          icon={ShoppingCart}
+        />
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Card className="md:col-span-2 border-border/10 shadow-sm">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <div className="space-y-1">
+              <CardTitle className="text-foreground">Sales Overview</CardTitle>
+              <CardDescription>Daily sales performance</CardDescription>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" className="border-border/20 hover:bg-muted">
+                Weekly
+              </Button>
+              <Button variant="outline" size="sm" className="border-border/20 hover:bg-muted">
+                Monthly
+              </Button>
+              <Button size="sm" className="bg-primary hover:bg-primary/90">
+                Yearly
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent className="pl-2">
+            {/* Placeholder for chart */}
+            <div className="h-[300px] w-full rounded-md bg-muted/30 flex items-center justify-center">
+              <TrendingUp className="h-16 w-16 text-muted" />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-border/10 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-foreground">Recent Activities</CardTitle>
+            <CardDescription>Latest transactions and updates</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="flex items-center gap-4 text-sm">
+                  <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center">
+                    <ShoppingCart className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <p className="font-medium text-foreground">New sale completed</p>
+                    <p className="text-xs text-muted-foreground">John Doe purchased 5 items</p>
+                  </div>
+                  <div className="text-xs text-muted-foreground">5m ago</div>
+                </div>
+              ))}
+              <Button variant="ghost" className="w-full hover:bg-muted" asChild>
+                <Link href="/dashboard/reports">View All Activities</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
 }
 
-// Avatar component for the dashboard
-function Avatar({ className, children }: { className?: string; children: React.ReactNode }) {
-		return <div className={`${className} flex items-center justify-center rounded-full bg-muted`}>{children}</div>
+function StatsCard({ title, value, change, trend, description, icon: Icon }) {
+  return (
+    <Card className="border-border/10 shadow-sm">
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardTitle className="text-sm font-medium text-foreground">{title}</CardTitle>
+        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+          <Icon className="h-4 w-4 text-primary" />
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold text-foreground">{value}</div>
+        <div className="flex items-center mt-1">
+          <span
+            className={cn(
+              "text-xs",
+              trend === "up" && "text-green-600",
+              trend === "down" && "text-red-600",
+              trend === "neutral" && "text-muted-foreground",
+            )}
+          >
+            {change}
+          </span>
+          <span className="text-xs text-muted-foreground ml-1">{description}</span>
+        </div>
+      </CardContent>
+    </Card>
+  )
 }
 
-function AvatarFallback({ children }: { children: React.ReactNode }) {
-		return <div className="text-sm font-medium">{children}</div>
+function cn(...classes) {
+  return classes.filter(Boolean).join(" ")
 }

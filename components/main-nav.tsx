@@ -3,56 +3,69 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { BarChart3, CreditCard, Home, Package, Settings, ShoppingCart, Users } from "lucide-react"
 
-interface MainNavProps {
-		className?: string
-}
+const navItems = [
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    icon: Home,
+  },
+  {
+    name: "Products",
+    href: "/dashboard/products",
+    icon: Package,
+  },
+  {
+    name: "POS",
+    href: "/pos",
+    icon: ShoppingCart,
+  },
+  {
+    name: "Customers",
+    href: "/dashboard/customers",
+    icon: Users,
+  },
+  {
+    name: "Credit Sales",
+    href: "/dashboard/credit",
+    icon: CreditCard,
+  },
+  {
+    name: "Reports",
+    href: "/dashboard/reports",
+    icon: BarChart3,
+  },
+  {
+    name: "Settings",
+    href: "/dashboard/settings",
+    icon: Settings,
+  },
+]
 
-export function MainNav({ className }: MainNavProps) {
-		const pathname = usePathname()
+export function MainNav() {
+  const pathname = usePathname()
 
-		const routes = [
-				{
-						href: "/dashboard",
-						label: "Dashboard",
-						active: pathname === "/dashboard",
-				},
-				{
-						href: "/inventory",
-						label: "Inventory",
-						active: pathname === "/inventory",
-				},
-				{
-						href: "/pos",
-						label: "Point of Sale",
-						active: pathname === "/pos",
-				},
-				{
-						href: "/reports",
-						label: "Reports",
-						active: pathname === "/reports",
-				},
-				{
-						href: "/settings",
-						label: "Settings",
-						active: pathname === "/settings",
-				},
-		]
+  return (
+    <nav className="flex flex-col gap-1 w-full">
+      {navItems.map((item) => {
+        const Icon = item.icon
+        const isActive = pathname === item.href
 
-		return (
-				<nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
-						{routes.map((route) => (
-								<Link
-										key={route.href}
-										href={route.href}
-										className={cn(
-												"text-sm font-medium transition-colors hover:text-primary",
-												route.active ? "text-primary" : "text-muted-foreground",
-										)}
-								>
-										{route.label}
-								</Link>
-						))}
-				</nav>
-		)
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={cn(
+              "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-all",
+              isActive ? "bg-[#50577A] text-white" : "text-gray-400 hover:bg-[#27374D] hover:text-white",
+            )}
+          >
+            <Icon className={cn("h-5 w-5", isActive ? "text-white" : "text-gray-400")} />
+            {item.name}
+          </Link>
+        )
+      })}
+    </nav>
+  )
 }

@@ -7,22 +7,26 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-    title: "Business POS System",
-    description: "A multi-tenant point of sale system for businesses",
+  title: "SuperPOS | Modern Point of Sale System",
+  description: "A modern point of sale system for supermarkets",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
-    children: React.ReactNode
+  children,
+}: Readonly<{
+  children: React.ReactNode
 }>) {
-    return (
-        <html lang="en">
-        <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {children}
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {children}
         </ThemeProvider>
-        </body>
-        </html>
-    )
+      </body>
+    </html>
+  )
 }
+
+
+import './globals.css'
