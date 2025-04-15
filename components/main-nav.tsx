@@ -47,25 +47,25 @@ export function MainNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="flex flex-col gap-1 w-full">
-      {navItems.map((item) => {
-        const Icon = item.icon
-        const isActive = pathname === item.href
+      <nav className="flex flex-col gap-1 w-full">
+        {navItems.map((item) => {
+          const Icon = item.icon
+          const isActive = pathname === item.href
 
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={cn(
-              "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-all",
-              isActive ? "bg-[#50577A] text-white" : "text-gray-400 hover:bg-[#27374D] hover:text-white",
-            )}
-          >
-            <Icon className={cn("h-5 w-5", isActive ? "text-white" : "text-gray-400")} />
-            {item.name}
-          </Link>
-        )
-      })}
-    </nav>
+          return (
+              <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                      "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-all",
+                      isActive ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                  )}
+              >
+                <Icon className={cn("h-5 w-5", isActive ? "text-primary" : "text-muted-foreground")} />
+                {item.name}
+              </Link>
+          )
+        })}
+      </nav>
   )
 }
